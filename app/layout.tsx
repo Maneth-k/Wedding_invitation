@@ -23,7 +23,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col relative bg-[#fbf9f5] text-[#332622]">
+        {/* Fixed 9-Slice Website Border (Beeralu Lace) */}
+        <div className="website-frame" aria-hidden="true" />
+        {children}
+      </body>
     </html>
   );
 }

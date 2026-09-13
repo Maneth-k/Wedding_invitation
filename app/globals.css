@@ -24,3 +24,42 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Fixed Viewport 9-Slice Website Border (Beeralu Lace) */
+.website-frame {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 34px;
+  border-image-source: url('/frame.jpg');
+  border-image-slice: 210 300; /* Transparent center */
+  border-image-repeat: round;
+}
+
+@media (min-width: 768px) {
+  .website-frame {
+    border-width: 44px;
+  }
+}
+
+/* Card-level / Container 9-slice frame */
+.beeralu-frame {
+  border-style: solid;
+  border-width: 32px;
+  border-image-source: url('/frame.jpg');
+  border-image-slice: 210 300 fill;
+  border-image-repeat: round;
+}
+
+@media (min-width: 768px) {
+  .beeralu-frame {
+    border-width: 44px;
+  }
+}
+
+
