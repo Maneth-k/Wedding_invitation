@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbf9f5;
+  --foreground: #332622;
 }
 html {
   /* Reserves space for the scrollbar, balancing both sides */
@@ -16,17 +16,9 @@ html {
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Fixed Viewport 9-Slice Website Border (Beeralu Lace) */
@@ -39,7 +31,7 @@ body {
   z-index: 9999;
   box-sizing: border-box;
   border-style: solid;
-  border-width: 34px;
+  border-width: 104px;
   border-image-source: url("/scratch_embedded.png");
   border-image-slice: 210 300; /* Transparent center */
   border-image-repeat: round;
@@ -47,7 +39,7 @@ body {
 
 @media (min-width: 768px) {
   .website-frame {
-    border-width: 44px;
+    border-width: 104px;
   }
 }
 
