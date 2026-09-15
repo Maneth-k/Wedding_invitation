@@ -8,7 +8,17 @@ html {
   /* Reserves space for the scrollbar, balancing both sides */
   scrollbar-gutter: stable both-edges;
 }
+/* Modern browsers (Firefox) */
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge (legacy) */
+}
 
+/* Chrome, Safari, Opera, modern Edge */
+/* html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+} */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
