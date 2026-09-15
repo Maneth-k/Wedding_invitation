@@ -4,6 +4,10 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+html {
+  /* Reserves space for the scrollbar, balancing both sides */
+  scrollbar-gutter: stable both-edges;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -36,7 +40,7 @@ body {
   box-sizing: border-box;
   border-style: solid;
   border-width: 34px;
-  border-image-source: url('/frame.jpg');
+  border-image-source: url("/scratch_embedded.png");
   border-image-slice: 210 300; /* Transparent center */
   border-image-repeat: round;
 }
@@ -51,7 +55,7 @@ body {
 .beeralu-frame {
   border-style: solid;
   border-width: 32px;
-  border-image-source: url('/frame.jpg');
+  border-image-source: url("/scratch_embedded.png");
   border-image-slice: 210 300 fill;
   border-image-repeat: round;
 }
@@ -61,5 +65,3 @@ body {
     border-width: 44px;
   }
 }
-
-

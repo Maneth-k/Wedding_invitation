@@ -53,7 +53,7 @@ export default function WeddingHomePage() {
               <div className="w-12 h-[0.5px] bg-[#c2aba0]" />
             </div>
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-normal text-[#2d221e] tracking-tight">
-              Partner
+              Akka
             </h1>
           </div>
 
@@ -290,7 +290,7 @@ export default function WeddingHomePage() {
         {/* --- FOOTER --- */}
         <footer className="pt-12 pb-6 text-center text-xs text-[#8c7467] font-sans border-t border-[#e8dcd2]">
           <p className="font-serif italic text-sm text-[#5c473d] mb-2">
-            With love, Ayya &amp; Partner
+            With love, Ayya &amp; Akka
           </p>
           <p className="text-[11px] text-[#9c8475]">
             Framed with authentic Sri Lankan Beeralu Lace 9-Slice CSS Border (<code>border-image</code>, 44px, repeat: round).
