@@ -41,29 +41,43 @@ body {
   z-index: 9999;
   box-sizing: border-box;
   border-style: solid;
-  border-width: 104px;
+
+  /* --- WIDER MOBILE BORDER ---
+     Syntax: [top/bottom] [left/right]
+     Previously: 56px 76px -> Now: 70px 100px (keeps the 0.7 ratio) */
+  border-width: 100px 140px;
+
   border-image-source: url("/scratch_embedded.png");
-  border-image-slice: 210 300; /* Transparent center */
-  border-image-repeat: round;
+  border-image-slice: 210 300; 
+  border-image-repeat: repeat round;
 }
 
 @media (min-width: 768px) {
   .website-frame {
-    border-width: 104px;
+    /* Previously: 72px 98px -> Now: 90px 130px */
+    border-width: 90px 130px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .website-frame {
+    /* Previously: 90px 120px -> Now: 112px 160px */
+    border-width: 112px 160px;
   }
 }
 
 /* Card-level / Container 9-slice frame */
 .beeralu-frame {
   border-style: solid;
-  border-width: 32px;
+  /* Thick, card-level border */
+  border-width: 42px 56px;
   border-image-source: url("/scratch_embedded.png");
   border-image-slice: 210 300 fill;
-  border-image-repeat: round;
+  border-image-repeat: repeat round;
 }
 
 @media (min-width: 768px) {
   .beeralu-frame {
-    border-width: 44px;
+    border-width: 54px 72px;
   }
 }
