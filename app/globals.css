@@ -45,7 +45,7 @@ body {
   /* --- WIDER MOBILE BORDER ---
      Syntax: [top/bottom] [left/right]
      Previously: 56px 76px -> Now: 70px 100px (keeps the 0.7 ratio) */
-  border-width: 100px 140px;
+  border-width: 100px 120px;
 
   border-image-source: url("/scratch_embedded.png");
   border-image-slice: 210 300; 
