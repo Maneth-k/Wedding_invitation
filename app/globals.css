@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Purgatory';
+  src: url('/Purgatory.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #fbf9f5;
   --foreground: #332622;
@@ -24,6 +32,7 @@ body::-webkit-scrollbar {
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-purgatory: var(--font-purgatory), 'Purgatory', cursive;
 }
 
 body {
