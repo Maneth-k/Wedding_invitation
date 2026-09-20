@@ -10,10 +10,14 @@ import VenueCard from "./components/VenueCard";
 import PoruwaCeremony from "./components/PoruwaCeremony";
 import PersonalizedRSVP from "./components/PersonalizedRSVP";
 import SaveTheDateCountdown from "./components/SaveTheDateCountdown";
+import SplashScreen from "./components/SplashScreen";
 
 export default function WeddingHomePage() {
   return (
     <div className="relative min-h-screen flex flex-col font-serif selection:bg-[#ecdccf] selection:text-[#412e27]">
+      {/* Sample Interactive Splash Screen */}
+      <SplashScreen />
+
       {/* Fixed 9-slice Beeralu viewport border overlay */}
       <div className="website-frame" aria-hidden="true" />
 

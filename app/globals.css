@@ -86,10 +86,10 @@ body {
   box-sizing: border-box;
   border-style: solid;
 
-  /* --- WIDER MOBILE BORDER ---
+  /* --- MOBILE BORDER ---
      Syntax: [top/bottom] [left/right]
-     Previously: 56px 76px -> Now: 70px 100px (keeps the 0.7 ratio) */
-  border-width: 100px 120px;
+     Scaled down to 42px 56px so mobile content has ample safe room */
+  border-width: 42px 56px;
 
   border-image-source: url("/scratch_embedded.png");
   border-image-slice: 210 300;
