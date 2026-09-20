@@ -38,9 +38,18 @@ export default function SplashScreen({ onOpen }: SplashScreenProps) {
         if (e.key === "Enter" || e.key === " ") handleOpen();
       }}
     >
-      {/* Ambient Warm Golden Glow */}
+      {/* Splash Background Image */}
+      <Image
+        src="/splash-background.jpg"
+        alt="Wedding Splash Background"
+        fill
+        priority
+        className="object-cover object-center pointer-events-none"
+      />
+
+      {/* Ambient Warm Translucent Overlay for Readability */}
       <div
-        className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(235,223,205,0.75)_0%,rgba(251,249,245,0.95)_60%,#fbf9f5_100%)]"
+        className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#fbf9f5]/75 via-[#fbf9f5]/55 to-[#fbf9f5]/80 backdrop-blur-[0.5px]"
         aria-hidden="true"
       />
 
