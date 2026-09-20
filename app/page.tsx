@@ -18,12 +18,12 @@ export default function WeddingHomePage() {
       <div className="website-frame" aria-hidden="true" />
 
       {/* Main Content Container with Safe Padding Buffer */}
-      <main className="flex-1 px-6 sm:px-12 md:px-20 lg:px-32 py-24 sm:py-28 md:py-32 lg:py-36 max-w-3xl mx-auto w-full flex flex-col items-center justify-start text-center relative z-10 font-[family-name:var(--font-cormorant),serif]">
+      <main className="flex-1 px-6 sm:px-10 md:px-14 lg:px-16 py-24 sm:py-28 md:py-32 lg:py-36 max-w-3xl md:max-w-4xl mx-auto w-full flex flex-col items-center justify-start text-center relative z-10 font-[family-name:var(--font-cormorant),serif]">
         {/* 1. Top Logo / Monogram */}
         <HeroMonogram />
 
         {/* 2. Invitation Flow */}
-        <div className="w-full max-w-xl mx-auto space-y-4 sm:space-y-5 md:space-y-6 text-[#3a2d27]">
+        <div className="w-full max-w-xl md:max-w-2xl lg:max-w-2xl xl:max-w-3xl mx-auto space-y-4 sm:space-y-5 md:space-y-6 text-[#3a2d27]">
           {/* Main Invitation Text (Hosts & Couple's Names) */}
           <MainInvitation />
 

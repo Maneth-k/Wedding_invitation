@@ -30,10 +30,7 @@ export default function MainInvitation() {
 
       {/* Couple's Names */}
       <div className="pt-3 sm:pt-4 md:pt-6">
-        <h1
-          style={{ fontFamily: "var(--font-purgatory), 'Purgatory', cursive" }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-[#ba8d53] leading-tight"
-        >
+        <h1 className="couple-name text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
           Pulith &amp; Dinithi
         </h1>
       </div>

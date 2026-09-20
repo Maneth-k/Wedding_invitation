@@ -1,15 +1,16 @@
 import React from "react";
 import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 
 export default function VenueCard() {
   return (
     <div className="pt-8 sm:pt-10 md:pt-12 pb-6 w-full">
       {/* Section Header */}
       <div className="flex flex-col items-center mb-5 sm:mb-6">
-        <span className="text-xs sm:text-sm tracking-[0.25em] uppercase font-medium text-[#ba8d53]">
+        <span className="text-base sm:text-lg md:text-xl tracking-[0.25em] uppercase font-medium text-[#ba8d53]">
           The Venue
         </span>
-        <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent mt-2" />
+        <div className="w-16 sm:w-20 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent mt-2 sm:mt-2.5" />
       </div>
 
       {/* Venue Card */}
@@ -42,20 +43,7 @@ export default function VenueCard() {
               className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[#ba8d53]/40 text-[#8c6536] text-xs sm:text-sm font-medium tracking-wide bg-[#fbf9f5]/80 hover:bg-[#ba8d53] hover:text-white transition-all duration-200"
             >
               <span>View on Google Maps</span>
-              <svg
-                className="w-3.5 h-3.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                <polyline points="15 3 21 3 21 9" />
-                <line x1="10" y1="14" x2="21" y2="3" />
-              </svg>
+              <ExternalLink className="w-3.5 h-3.5" strokeWidth={2} aria-hidden="true" />
             </a>
           </div>
         </div>

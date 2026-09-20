@@ -2,6 +2,7 @@
 
 import React, { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { User, Check, SquarePen, Heart, X, ArrowRight } from "lucide-react";
 
 interface RSVPFormData {
   fullName: string;
@@ -150,10 +151,7 @@ function PersonalizedRSVPContent() {
 
         {/* Couple's Names */}
         <div className="pt-2 sm:pt-3">
-          <span
-            style={{ fontFamily: "var(--font-purgatory), 'Purgatory', cursive" }}
-            className="text-3xl sm:text-4xl md:text-5xl text-[#ba8d53] font-normal"
-          >
+          <span className="couple-name text-4xl sm:text-5xl md:text-6xl font-bold inline-block">
             Pulith &amp; Dinithi
           </span>
         </div>
@@ -161,19 +159,11 @@ function PersonalizedRSVPContent() {
         {/* Seats Reserved UI Message */}
         <div className="mt-6 pt-4 border-t border-[#f2e9e1] flex justify-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#fbf9f5] border border-[#ba8d53]/30 text-[#8c6536] text-xs sm:text-sm font-medium tracking-wide">
-            <svg
+            <User
               className="w-4 h-4 text-[#ba8d53]"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.75"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              strokeWidth={1.75}
               aria-hidden="true"
-            >
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
+            />
             <span>We have reserved {seatText} in your honour.</span>
           </div>
         </div>
@@ -198,18 +188,11 @@ function PersonalizedRSVPContent() {
             /* Submission Confirmation State */
             <div className="text-center py-6 px-2 space-y-5">
               <div className="w-16 h-16 rounded-full bg-gradient-to-b from-[#faf6f0] to-[#f4ede3] border border-[#ba8d53]/40 flex items-center justify-center text-[#ba8d53] mx-auto shadow-[0_4px_16px_rgba(186,141,83,0.15)]">
-                <svg
+                <Check
                   className="w-8 h-8"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeWidth={2.2}
                   aria-hidden="true"
-                >
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
+                />
               </div>
 
               <div className="space-y-2 max-w-md mx-auto">
@@ -243,18 +226,11 @@ function PersonalizedRSVPContent() {
                   onClick={handleEdit}
                   className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[#ba8d53]/30 text-xs sm:text-sm text-[#8c6536] hover:bg-[#faf6f0] transition-colors font-medium cursor-pointer"
                 >
-                  <svg
+                  <SquarePen
                     className="w-3.5 h-3.5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.75"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                  </svg>
+                    strokeWidth={1.75}
+                    aria-hidden="true"
+                  />
                   <span>Edit Response</span>
                 </button>
               </div>
@@ -288,19 +264,11 @@ function PersonalizedRSVPContent() {
                   />
                   {/* Decorative Icon */}
                   <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#ba8d53]">
-                    <svg
+                    <User
                       className="w-4 h-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.75"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      strokeWidth={1.75}
                       aria-hidden="true"
-                    >
-                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
+                    />
                   </div>
                 </div>
               </div>
@@ -323,17 +291,11 @@ function PersonalizedRSVPContent() {
                   >
                     <div className="flex items-start justify-between">
                       <div className="w-8 h-8 rounded-full bg-white border border-[#ecdccf] flex items-center justify-center text-[#ba8d53] mb-2.5 shadow-2xs">
-                        <svg
+                        <Heart
                           className="w-4 h-4"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                        </svg>
+                          strokeWidth={2}
+                          aria-hidden="true"
+                        />
                       </div>
 
                       {/* Radio Indicator */}
@@ -372,18 +334,11 @@ function PersonalizedRSVPContent() {
                   >
                     <div className="flex items-start justify-between">
                       <div className="w-8 h-8 rounded-full bg-white border border-[#ecdccf] flex items-center justify-center text-[#8c766b] mb-2.5 shadow-2xs">
-                        <svg
+                        <X
                           className="w-4 h-4"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.75"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <line x1="18" y1="6" x2="6" y2="18" />
-                          <line x1="6" y1="6" x2="18" y2="18" />
-                        </svg>
+                          strokeWidth={1.75}
+                          aria-hidden="true"
+                        />
                       </div>
 
                       {/* Radio Indicator */}
@@ -530,18 +485,11 @@ function PersonalizedRSVPContent() {
                   className="w-full sm:w-auto min-w-[220px] px-8 py-3.5 rounded-full bg-gradient-to-r from-[#ba8d53] via-[#c2965d] to-[#ba8d53] hover:from-[#aa7e46] hover:to-[#a0743e] text-white font-medium text-xs sm:text-sm uppercase tracking-[0.18em] shadow-[0_6px_20px_rgba(186,141,83,0.25)] hover:shadow-[0_8px_26px_rgba(186,141,83,0.35)] transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer inline-flex items-center justify-center gap-2"
                 >
                   <span>Confirm Response</span>
-                  <svg
+                  <ArrowRight
                     className="w-4 h-4"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  />
                 </button>
               </div>
             </form>

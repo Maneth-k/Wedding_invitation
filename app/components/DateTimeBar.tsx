@@ -22,10 +22,10 @@ export default function DateTimeBar() {
           <span className="text-xs sm:text-sm tracking-[0.2em] uppercase font-medium text-[#705c52]">
             October
           </span>
-          <span className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#2d221e] my-0.5 sm:my-1">
+          <span className="font-numbers text-2xl sm:text-3xl md:text-4xl font-bold text-[#68625b] my-0.5 sm:my-1">
             21
           </span>
-          <span className="text-xs sm:text-sm tracking-[0.2em] uppercase font-medium text-[#705c52]">
+          <span className="font-numbers text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-[#68625b]">
             2026
           </span>
         </div>

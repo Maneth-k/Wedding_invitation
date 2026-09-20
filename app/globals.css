@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap");
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'Purgatory';
-  src: url('/Purgatory.ttf') format('truetype');
+  font-family: "Purgatory";
+  src: url("/Purgatory.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -17,7 +18,8 @@ html {
   scrollbar-gutter: stable both-edges;
 }
 /* Modern browsers (Firefox) */
-html, body {
+html,
+body {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge (legacy) */
 }
@@ -32,7 +34,40 @@ body::-webkit-scrollbar {
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-purgatory: var(--font-purgatory), 'Purgatory', cursive;
+  --font-purgatory: var(--font-purgatory), "Purgatory", cursive;
+  --font-beau-rivage: "Beau Rivage", cursive;
+  --font-playfair-sc: "Playfair Display SC", serif;
+}
+
+/* Custom class for numbers */
+.font-numbers,
+.font-number {
+  font-family: "Playfair Display SC", serif;
+  font-weight: 700;
+  color: #68625b;
+}
+
+/* Custom class for couple's names */
+.couple-name,
+.couple-names {
+  font-family: "Beau Rivage", cursive;
+  font-weight: 700;
+  background: linear-gradient(
+    135deg,
+    #a87d46 0%,
+    #ba8d53 30%,
+    #cf9f65 52%,
+    #ba8d53 72%,
+    #9e733d 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #ba8d53;
+  display: inline-block;
+  padding-bottom: 0.08em;
+  padding-right: 0.05em;
+  filter: drop-shadow(0 1px 1px rgba(186, 141, 83, 0.12));
 }
 
 body {
@@ -57,7 +92,7 @@ body {
   border-width: 100px 120px;
 
   border-image-source: url("/scratch_embedded.png");
-  border-image-slice: 210 300; 
+  border-image-slice: 210 300;
   border-image-repeat: repeat round;
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
 }

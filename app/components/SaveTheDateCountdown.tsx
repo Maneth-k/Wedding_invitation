@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { Phone } from "lucide-react";
 
 interface TimeLeft {
   days: number;
@@ -46,24 +47,28 @@ export default function SaveTheDateCountdown() {
     return () => clearInterval(interval);
   }, []);
 
-  const formatUnit = (val: number) => String(val).padStart(2, "0");
-
   return (
-    <div className="pt-8 sm:pt-10 md:pt-12 pb-12 sm:pb-16 w-full flex flex-col items-center justify-center text-center space-y-6 sm:space-y-8">
-      {/* Section Header */}
-      <div className="flex flex-col items-center">
-        <span className="text-xs sm:text-sm tracking-[0.25em] uppercase font-medium text-[#ba8d53]">
-          Save the Date
-        </span>
-        <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent mt-2" />
-      </div>
-
+    <div className="pt-8 sm:pt-10 md:pt-12 pb-12 sm:pb-16 w-full max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto flex flex-col items-center justify-center text-center">
       {/* Main Card */}
-      <div className="w-full relative bg-gradient-to-b from-[#ffffff]/95 via-[#fdfcf9]/90 to-[#faf7f2]/95 backdrop-blur-md border border-[#ecdccf] rounded-3xl p-6 sm:p-8 md:p-10 shadow-[0_10px_35px_rgba(75,50,35,0.06)] flex flex-col items-center text-center space-y-6 sm:space-y-7">
-        
-        {/* Date & Subtitle */}
-        <div className="space-y-2">
-          <h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[0.12em] text-[#2d221e]">
+      <div className="w-full relative bg-gradient-to-b from-[#ffffff]/95 via-[#fdfcf9]/90 to-[#faf7f2]/95 backdrop-blur-md border border-[#ba8d53]/35 rounded-t-[100px] rounded-b-[40px] sm:rounded-t-[120px] sm:rounded-b-[48px] md:rounded-t-[140px] md:rounded-b-[60px] px-6 sm:px-10 md:px-12 lg:px-16 pt-8 sm:pt-10 md:pt-12 pb-10 sm:pb-12 md:pb-14 shadow-[0_10px_35px_rgba(75,50,35,0.06)] flex flex-col items-center text-center space-y-6 sm:space-y-7">
+        {/* Perfectly Uniform Inner Border - Fixed for Flex Container quirks */}
+        {/* Replaced 'inset' with exact width/height calculations to force a perfect gap on the bottom */}
+        <div
+          className="absolute top-[8px] left-[8px] w-[calc(100%-16px)] h-[calc(100%-16px)] sm:top-[10px] sm:left-[10px] sm:w-[calc(100%-20px)] sm:h-[calc(100%-20px)] md:top-[12px] md:left-[12px] md:w-[calc(100%-24px)] md:h-[calc(100%-24px)] border border-[#ba8d53]/35 rounded-t-[92px] rounded-b-[32px] sm:rounded-t-[110px] sm:rounded-b-[38px] md:rounded-t-[128px] md:rounded-b-[48px] pointer-events-none"
+          aria-hidden="true"
+        />
+
+        {/* Card Title: Save the Date */}
+        <div className="flex flex-col items-center space-y-2 pt-1">
+          <span className="text-xs sm:text-sm tracking-[0.28em] uppercase font-medium text-[#ba8d53]">
+            Save the Date
+          </span>
+          <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent" />
+        </div>
+
+        {/* Date: The Highlight of this Section */}
+        <div className="space-y-2 sm:space-y-3">
+          <h3 className="font-numbers text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.12em] sm:tracking-[0.16em] text-[#68625b] leading-tight filter drop-shadow-xs">
             21.10.2026
           </h3>
           <p className="text-base sm:text-lg italic font-light tracking-wide text-[#705c52]">
@@ -71,115 +76,58 @@ export default function SaveTheDateCountdown() {
           </p>
         </div>
 
-        {/* Countdown Display: Clean 'Days To Go' layout */}
-        <div className="w-full flex justify-center pt-1 pb-1">
-          <div className="inline-flex flex-col items-center justify-center px-8 sm:px-12 py-3.5 sm:py-4 rounded-2xl bg-[#fbf9f5] border border-[#ecdccf] shadow-2xs">
-            <span className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#ba8d53] leading-none">
+        {/* Countdown Display: Circular Days Counter */}
+        <div className="w-full flex flex-col items-center justify-center gap-2.5 sm:gap-3 pt-1 pb-1">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-b from-[#ffffff]/95 via-[#fcfaf6]/85 to-[#f7f2ea]/95 border border-[#ecdccf] shadow-[0_4px_16px_rgba(75,50,35,0.06)] backdrop-blur-xs flex items-center justify-center">
+            <span className="font-numbers text-3xl sm:text-4xl md:text-5xl font-bold text-[#68625b] leading-none -translate-y-0.5 sm:-translate-y-0.5">
               {mounted ? timeLeft.days : "--"}
             </span>
-            <span className="text-xs sm:text-sm uppercase tracking-[0.22em] text-[#705c52] font-medium mt-2">
-              Days To Go
-            </span>
           </div>
+          <span className="text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#8a7569] font-medium">
+            Days To Go
+          </span>
         </div>
-
-        {/* 
-          Full Countdown Timer (Days, Hours, Mins, Secs) - Kept for reference
-          <div className="w-full max-w-md pt-1 pb-1">
-            <div className="grid grid-cols-4 gap-2.5 sm:gap-4">
-              <div className="bg-[#fbf9f5] border border-[#ecdccf] rounded-2xl p-2.5 sm:p-3.5 shadow-2xs flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#2d221e] leading-none">
-                  {mounted ? formatUnit(timeLeft.days) : "--"}
-                </span>
-                <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#8a7569] font-medium mt-1.5">
-                  Days
-                </span>
-              </div>
-              <div className="bg-[#fbf9f5] border border-[#ecdccf] rounded-2xl p-2.5 sm:p-3.5 shadow-2xs flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#2d221e] leading-none">
-                  {mounted ? formatUnit(timeLeft.hours) : "--"}
-                </span>
-                <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#8a7569] font-medium mt-1.5">
-                  Hours
-                </span>
-              </div>
-              <div className="bg-[#fbf9f5] border border-[#ecdccf] rounded-2xl p-2.5 sm:p-3.5 shadow-2xs flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#2d221e] leading-none">
-                  {mounted ? formatUnit(timeLeft.minutes) : "--"}
-                </span>
-                <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#8a7569] font-medium mt-1.5">
-                  Mins
-                </span>
-              </div>
-              <div className="bg-[#fbf9f5] border border-[#ecdccf] rounded-2xl p-2.5 sm:p-3.5 shadow-2xs flex flex-col items-center">
-                <span className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#ba8d53] leading-none">
-                  {mounted ? formatUnit(timeLeft.seconds) : "--"}
-                </span>
-                <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#8a7569] font-medium mt-1.5">
-                  Secs
-                </span>
-              </div>
-            </div>
-          </div>
-        */}
 
         {/* Fading Gold Divider */}
         <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent" />
 
         {/* Couple's Names in Cursive Script */}
         <div className="space-y-1">
-          <h2
-            style={{ fontFamily: "var(--font-purgatory), 'Purgatory', cursive" }}
-            className="text-3xl sm:text-4xl md:text-5xl text-[#ba8d53] font-normal leading-tight"
-          >
+          <h2 className="couple-name text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
             Pulith &amp; Dinithi
           </h2>
         </div>
 
         {/* Contact Call Buttons */}
-        <div className="w-full pt-1">
-          <div className="flex items-center justify-center gap-3 sm:gap-4">
+        <div className="w-full pt-2 z-10">
+          <div className="flex items-center justify-center gap-3 sm:gap-5">
             {/* Call Pulith */}
             <a
-              href="tel:0764655051"
-              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-[#fbf9f5] border border-[#ba8d53]/40 text-[#3a2d27] hover:bg-[#ba8d53] hover:text-white transition-all duration-200 shadow-2xs hover:shadow-xs group cursor-pointer"
+              href="tel:0788611499"
+              className="inline-flex items-center justify-center gap-2.5 px-8 sm:px-10 py-1.5 sm:py-2 rounded-full bg-gradient-to-b from-[#ffffff] via-[#fbf8f4] to-[#ebe1d3] text-[#3a2d27] font-medium shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-md transition-shadow cursor-pointer"
             >
-              <svg
-                className="w-4 h-4 text-[#ba8d53] group-hover:text-white transition-colors shrink-0"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              <Phone
+                className="w-4 h-4 text-[#ba8d53] shrink-0"
+                strokeWidth={1.75}
                 aria-hidden="true"
-              >
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
+              />
               <span className="text-xs sm:text-sm font-medium tracking-wider">
-                Pulith
+                PULITH
               </span>
             </a>
 
             {/* Call Dinithi */}
             <a
               href="tel:0762506969"
-              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-[#fbf9f5] border border-[#ba8d53]/40 text-[#3a2d27] hover:bg-[#ba8d53] hover:text-white transition-all duration-200 shadow-2xs hover:shadow-xs group cursor-pointer"
+              className="inline-flex items-center justify-center gap-2.5 px-8 sm:px-10 py-1.5 sm:py-2 rounded-full bg-gradient-to-b from-[#ffffff] via-[#fbf8f4] to-[#ebe1d3] text-[#3a2d27] font-medium shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-md transition-shadow cursor-pointer"
             >
-              <svg
-                className="w-4 h-4 text-[#ba8d53] group-hover:text-white transition-colors shrink-0"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              <Phone
+                className="w-4 h-4 text-[#ba8d53] shrink-0"
+                strokeWidth={1.75}
                 aria-hidden="true"
-              >
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
+              />
               <span className="text-xs sm:text-sm font-medium tracking-wider">
-                Dinithi
+                DINITHI
               </span>
             </a>
           </div>
