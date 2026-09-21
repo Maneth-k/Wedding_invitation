@@ -9,7 +9,7 @@ export default function LoveStorySection() {
         <div className="w-8 sm:w-12 h-[1px] bg-gradient-to-l from-transparent via-[#ba8d53]/50 to-transparent" />
       </div>
 
-      <h2 className="text-xl sm:text-2xl md:text-3xl font-medium tracking-wider text-[#2d221e]">
+      <h2 className="font-playfair text-xl sm:text-2xl md:text-3xl font-medium tracking-wider text-[#a0715b]">
         A Lifetime in the Making
       </h2>
 

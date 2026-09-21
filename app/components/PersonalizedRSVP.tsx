@@ -103,7 +103,7 @@ function PersonalizedRSVPContent() {
   return (
     <div className="pt-8 sm:pt-10 md:pt-12 pb-8 w-full space-y-8 sm:space-y-10">
       {/* 1. Personalized Guest Invitation Card */}
-      <div className="relative bg-[#ffffff]/85 backdrop-blur-xs border border-[#ecdccf] rounded-2xl p-6 sm:p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300 hover:shadow-[0_12px_36px_rgba(75,50,35,0.08)] text-center">
+      <div className="relative bg-[#ffffff]/85 backdrop-blur-xs border border-[#ecdccf] rounded-2xl p-4 sm:p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300 hover:shadow-[0_12px_36px_rgba(75,50,35,0.08)] text-center">
         {/* Decorative Top Flourish */}
         <div className="flex items-center justify-center gap-3 mb-4 sm:mb-5">
           <div className="w-10 sm:w-16 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent" />
@@ -118,26 +118,28 @@ function PersonalizedRSVPContent() {
 
         {/* Parents */}
         <div className="mt-3 sm:mt-4 space-y-1">
-          <p className="text-base sm:text-lg md:text-xl font-semibold tracking-wider text-[#2d221e] leading-snug">
-            Shanika &amp; Sahampathie Chandrasekera
+          <p className="font-playfair text-base sm:text-lg md:text-xl font-normal tracking-wide text-[#a0715b] leading-snug">
+            <span className="block sm:inline">Mr. Chiththananda &amp;</span>
+            <span className="block sm:inline">Mrs. Nalini Mirihana</span>
           </p>
           <p className="text-xs sm:text-sm italic tracking-widest text-[#8a7569]">
             together with
           </p>
-          <p className="text-base sm:text-lg md:text-xl font-bold tracking-wider text-[#2d221e] leading-snug">
-            Dharshika &amp; Sanjeewa Alahakoon
+          <p className="font-playfair text-base sm:text-lg md:text-xl font-normal tracking-wide text-[#a0715b] leading-snug">
+            <span className="block sm:inline">Mr. Neel Athukorala &amp;</span>
+            <span className="block sm:inline">Mrs. Manel Jayawardena</span>
           </p>
         </div>
 
         {/* Invitation connector */}
-        <p className="text-xs sm:text-sm tracking-[0.25em] uppercase font-medium text-[#ba8d53] mt-4 sm:mt-5">
+        <p className="font-playfair-sc text-xs sm:text-sm tracking-[0.25em] uppercase font-medium text-[#ba8d53] mt-4 sm:mt-5">
           cordially invite
         </p>
 
         {/* Guest Name(s) Highlight */}
         <div className="py-3 sm:py-4">
           <div className="inline-block relative">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-normal text-[#ba8d53] tracking-wide leading-tight px-4 py-1">
+            <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-normal text-[#ba8d53] tracking-wide leading-tight px-4 py-1">
               {guestName}
             </h2>
             <div className="w-3/4 mx-auto h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/50 to-transparent mt-1" />
@@ -152,7 +154,7 @@ function PersonalizedRSVPContent() {
         {/* Couple's Names */}
         <div className="pt-2 sm:pt-3">
           <span className="couple-name text-4xl sm:text-5xl md:text-6xl font-bold inline-block">
-            Pulith &amp; Dinithi
+            Dinithi &amp; Pulith
           </span>
         </div>
 
@@ -173,7 +175,7 @@ function PersonalizedRSVPContent() {
       <div id="rsvp-section" className="w-full">
         {/* Section Header */}
         <div className="flex flex-col items-center mb-5 sm:mb-6 text-center">
-          <span className="text-xs sm:text-sm tracking-[0.25em] uppercase font-medium text-[#ba8d53]">
+          <span className="font-playfair-sc text-xs sm:text-sm tracking-[0.25em] uppercase font-medium text-[#ba8d53]">
             RSVP
           </span>
           <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent mt-2" />
@@ -183,7 +185,7 @@ function PersonalizedRSVPContent() {
         </div>
 
         {/* Form Card Container */}
-        <div className="relative bg-gradient-to-b from-[#ffffff]/95 via-[#fdfcf9]/90 to-[#faf7f2]/95 backdrop-blur-md border border-[#ecdccf] rounded-3xl p-6 sm:p-8 md:p-10 shadow-[0_10px_35px_rgba(75,50,35,0.06)] transition-all duration-300">
+        <div className="relative bg-gradient-to-b from-[#ffffff]/95 via-[#fdfcf9]/90 to-[#faf7f2]/95 backdrop-blur-md border border-[#ecdccf] rounded-3xl p-4 sm:p-8 md:p-10 shadow-[0_10px_35px_rgba(75,50,35,0.06)] transition-all duration-300">
           {isSubmitted && submittedData ? (
             /* Submission Confirmation State */
             <div className="text-center py-6 px-2 space-y-5">
@@ -196,10 +198,10 @@ function PersonalizedRSVPContent() {
               </div>
 
               <div className="space-y-2 max-w-md mx-auto">
-                <span className="text-xs uppercase tracking-[0.25em] text-[#ba8d53] font-medium">
+                <span className="font-playfair-sc text-xs uppercase tracking-[0.25em] text-[#ba8d53] font-medium">
                   RSVP Received
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-semibold text-[#2d221e] tracking-wide">
+                <h3 className="font-playfair text-2xl sm:text-3xl font-semibold text-[#a0715b] tracking-wide">
                   Thank You, {submittedData.fullName}!
                 </h3>
                 <p className="text-sm sm:text-base text-[#705c52] font-light leading-relaxed">
@@ -313,7 +315,7 @@ function PersonalizedRSVPContent() {
                     </div>
 
                     <div>
-                      <p className="text-sm sm:text-base font-semibold text-[#2d221e] tracking-wide">
+                      <p className="font-playfair text-sm sm:text-base font-semibold text-[#a0715b] tracking-wide">
                         Joyfully Accepts
                       </p>
                       <p className="text-xs text-[#705c52] font-light mt-0.5">
@@ -356,7 +358,7 @@ function PersonalizedRSVPContent() {
                     </div>
 
                     <div>
-                      <p className="text-sm sm:text-base font-semibold text-[#2d221e] tracking-wide">
+                      <p className="font-playfair text-sm sm:text-base font-semibold text-[#a0715b] tracking-wide">
                         Regretfully Declines
                       </p>
                       <p className="text-xs text-[#705c52] font-light mt-0.5">
@@ -472,7 +474,7 @@ function PersonalizedRSVPContent() {
                     rows={3}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Leave a heartfelt blessing or message for Pulith & Dinithi..."
+                    placeholder="Leave a heartfelt blessing or message for Dinithi & Pulith..."
                     className="w-full px-4 py-2.5 sm:py-3 rounded-xl bg-[#fbf9f5]/80 border border-[#ecdccf] text-[#2d221e] text-sm sm:text-base focus:outline-hidden focus:border-[#ba8d53] focus:ring-1 focus:ring-[#ba8d53] transition-all resize-none"
                   />
                 </div>
@@ -484,7 +486,7 @@ function PersonalizedRSVPContent() {
                   type="submit"
                   className="w-full sm:w-auto min-w-[220px] px-8 py-3.5 rounded-full bg-gradient-to-r from-[#ba8d53] via-[#c2965d] to-[#ba8d53] hover:from-[#aa7e46] hover:to-[#a0743e] text-white font-medium text-xs sm:text-sm uppercase tracking-[0.18em] shadow-[0_6px_20px_rgba(186,141,83,0.25)] hover:shadow-[0_8px_26px_rgba(186,141,83,0.35)] transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer inline-flex items-center justify-center gap-2"
                 >
-                  <span>Confirm Response</span>
+                  <span className="font-playfair font-medium">Confirm Response</span>
                   <ArrowRight
                     className="w-4 h-4"
                     strokeWidth={2}

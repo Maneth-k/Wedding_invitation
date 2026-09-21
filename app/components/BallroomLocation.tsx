@@ -13,7 +13,7 @@ export default function BallroomLocation() {
         />
       </div>
 
-      <p className="text-base sm:text-lg md:text-xl font-semibold tracking-wider text-[#2d221e]">
+      <p className="font-playfair text-base sm:text-lg md:text-xl font-semibold tracking-wider text-[#a0715b]">
         The Grand Ballroom
       </p>
       <p className="text-sm sm:text-base md:text-lg font-light tracking-wide text-[#705c52]">

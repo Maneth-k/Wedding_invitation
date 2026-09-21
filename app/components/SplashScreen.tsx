@@ -84,7 +84,7 @@ export default function SplashScreen({ onOpen }: SplashScreenProps) {
 
         {/* Header Ribbon & Names */}
         <div className="space-y-0.5 sm:space-y-1">
-          <span className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-[#ba8d53] font-medium block">
+          <span className="font-playfair-sc text-[10px] sm:text-xs uppercase tracking-[0.3em] text-[#ba8d53] font-medium block">
             The Wedding Of
           </span>
           <h1 className="couple-name text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold leading-tight drop-shadow-xs">
@@ -100,7 +100,7 @@ export default function SplashScreen({ onOpen }: SplashScreenProps) {
           <p className="font-numbers text-xs sm:text-sm tracking-[0.2em] text-[#68625b] uppercase font-semibold">
             October 21, 2026
           </p>
-          <p className="text-[10px] sm:text-xs tracking-[0.18em] text-[#8a7569] uppercase font-light">
+          <p className="font-playfair text-[10px] sm:text-xs tracking-[0.18em] text-[#8a7569] uppercase font-light">
             Cinnamon Bentota Beach
           </p>
         </div>
@@ -116,13 +116,13 @@ export default function SplashScreen({ onOpen }: SplashScreenProps) {
             className="group relative inline-flex items-center gap-2 sm:gap-2.5 px-6 sm:px-9 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#ba8d53] via-[#c99c64] to-[#ba8d53] hover:from-[#aa7e46] hover:to-[#a0743e] text-white font-medium shadow-[0_6px_20px_rgba(186,141,83,0.32)] hover:shadow-[0_10px_28px_rgba(186,141,83,0.45)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
             <MailOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#fff6ea] transition-transform duration-300 group-hover:scale-110" />
-            <span className="text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.22em] font-semibold text-white">
+            <span className="font-playfair text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.22em] font-semibold text-white">
               Open Invitation
             </span>
             <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#fff2dd] opacity-80" />
           </button>
 
-          <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-[#9e8b80] font-light">
+          <span className="font-playfair text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-[#9e8b80] font-light">
             Tap anywhere to enter
           </span>
         </div>

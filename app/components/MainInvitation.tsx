@@ -9,8 +9,9 @@ export default function MainInvitation() {
       </p>
 
       {/* Parents 1 */}
-      <p className="font-playfair text-base sm:text-lg md:text-xl font-semibold tracking-wide text-[#2d221e] leading-snug">
-        Mr. Chiththananda &amp; Mrs. Nalini Mirihana
+      <p className="font-playfair text-base sm:text-lg md:text-xl font-normal tracking-wide text-[#a0715b] leading-snug">
+        <span className="block sm:inline">Mr. Chiththananda &amp;</span>
+        <span className="block sm:inline">Mrs. Nalini Mirihana</span>
       </p>
 
       {/* Connector */}
@@ -19,8 +20,9 @@ export default function MainInvitation() {
       </p>
 
       {/* Parents 2 */}
-      <p className="font-playfair text-base sm:text-lg md:text-xl font-semibold tracking-wide text-[#2d221e] leading-snug">
-        Mr. Neel Athukorala &amp; Mrs. Manel Jayawardena
+      <p className="font-playfair text-base sm:text-lg md:text-xl font-normal tracking-wide text-[#a0715b] leading-snug">
+        <span className="block sm:inline">Mr. Neel Athukorala &amp;</span>
+        <span className="block sm:inline">Mrs. Manel Jayawardena</span>
       </p>
 
       {/* Invitation Line */}
@@ -29,8 +31,8 @@ export default function MainInvitation() {
       </p>
 
       {/* Couple's Names */}
-      <div className="pt-3 sm:pt-4 md:pt-6">
-        <h1 className="couple-name text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
+      <div className="pt-3 sm:pt-4 md:pt-6 overflow-visible">
+        <h1 className="couple-name text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
           Dinithi &amp; Pulith
         </h1>
       </div>

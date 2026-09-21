@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,12 +20,6 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const purgatory = localFont({
-  src: "../public/Purgatory.ttf",
-  variable: "--font-purgatory",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   title: "Dinithi & Pulith - Wedding Invitation",
   description: "Celebrate the marriage of Dinithi & Pulith",
@@ -36,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${purgatory.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} h-full antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
