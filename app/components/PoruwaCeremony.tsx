@@ -38,7 +38,7 @@ export default function PoruwaCeremony() {
             strokeWidth={1.75}
             aria-hidden="true"
           />
-          <span>8.00 AM</span>
+          <span>9.20 AM</span>
         </div>
 
         {/* Location */}

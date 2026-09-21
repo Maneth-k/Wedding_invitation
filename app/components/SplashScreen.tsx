@@ -70,19 +70,16 @@ export default function SplashScreen({ onOpen }: SplashScreenProps) {
 
       {/* Main Center Content Container with Precise Safe-Padding for Mobile */}
       <div className="relative z-10 w-full max-w-[280px] xs:max-w-[320px] sm:max-w-md md:max-w-lg mx-auto flex flex-col items-center text-center px-2 py-3 sm:py-6 space-y-2.5 sm:space-y-4 md:space-y-5">
-        {/* Monogram Crest with Soft Glow */}
-        <div className="relative">
-          <div className="absolute -inset-3 bg-gradient-to-r from-[#ba8d53]/20 via-[#f3e6d5]/40 to-[#ba8d53]/20 rounded-full blur-lg animate-pulse" />
-          <div className="relative w-16 xs:w-20 sm:w-28 md:w-36 aspect-[581/565] transition-transform duration-700 hover:scale-105">
-            <Image
-              src="/pd-logo.png"
-              alt="Pulith & Dinithi Monogram"
-              width={581}
-              height={565}
-              priority
-              className="w-full h-auto object-contain drop-shadow-[0_6px_16px_rgba(186,141,83,0.2)]"
-            />
-          </div>
+        {/* Monogram Crest */}
+        <div className="relative w-16 xs:w-20 sm:w-28 md:w-36 aspect-[581/565] transition-transform duration-700 hover:scale-105">
+          <Image
+            src="/pd-logo.png"
+            alt="Pulith & Dinithi Monogram"
+            width={581}
+            height={565}
+            priority
+            className="w-full h-auto object-contain"
+          />
         </div>
 
         {/* Header Ribbon & Names */}
@@ -91,7 +88,7 @@ export default function SplashScreen({ onOpen }: SplashScreenProps) {
             The Wedding Of
           </span>
           <h1 className="couple-name text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold leading-tight drop-shadow-xs">
-            Pulith &amp; Dinithi
+            Dinithi &amp; Pulith
           </h1>
         </div>
 

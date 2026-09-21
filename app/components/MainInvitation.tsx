@@ -9,7 +9,7 @@ export default function MainInvitation() {
       </p>
 
       {/* Parents 1 */}
-      <p className="text-base sm:text-lg md:text-xl font-semibold tracking-wider text-[#2d221e] leading-snug">
+      <p className="font-playfair text-base sm:text-lg md:text-xl font-semibold tracking-wide text-[#2d221e] leading-snug">
         Mr. Chiththananda &amp; Mrs. Nalini Mirihana
       </p>
 
@@ -19,7 +19,7 @@ export default function MainInvitation() {
       </p>
 
       {/* Parents 2 */}
-      <p className="text-base sm:text-lg md:text-xl font-bold tracking-wider text-[#2d221e] leading-snug">
+      <p className="font-playfair text-base sm:text-lg md:text-xl font-semibold tracking-wide text-[#2d221e] leading-snug">
         Mr. Neel Athukorala &amp; Mrs. Manel Jayawardena
       </p>
 
@@ -31,7 +31,7 @@ export default function MainInvitation() {
       {/* Couple's Names */}
       <div className="pt-3 sm:pt-4 md:pt-6">
         <h1 className="couple-name text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
-          Pulith &amp; Dinithi
+          Dinithi &amp; Pulith
         </h1>
       </div>
     </div>

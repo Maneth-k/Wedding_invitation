@@ -7,7 +7,7 @@ export default function HeroMonogram() {
       <div className="relative w-24 sm:w-28 md:w-32 lg:w-36 aspect-[581/565]">
         <Image
           src="/pd-logo.png"
-          alt="Pulith & Dinithi Monogram"
+          alt="Dinithi & Pulith Monogram"
           width={581}
           height={565}
           priority

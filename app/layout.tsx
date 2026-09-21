@@ -28,8 +28,8 @@ const purgatory = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Pulith & Dinithi - Wedding Invitation",
-  description: "Celebrate the marriage of Pulith & Dinithi",
+  title: "Dinithi & Pulith - Wedding Invitation",
+  description: "Celebrate the marriage of Dinithi & Pulith",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -42,7 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
           rel="stylesheet"
         />
       </head>
