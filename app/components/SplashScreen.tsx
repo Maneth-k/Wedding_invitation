@@ -86,8 +86,12 @@ export default function SplashScreen({ onOpen }: SplashScreenProps) {
           <span className="font-playfair-sc text-[10px] sm:text-xs uppercase tracking-[0.3em] text-[#ba8d53] font-medium block">
             The Wedding Of
           </span>
-          <h1 className="couple-name text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold leading-tight drop-shadow-xs">
-            Dinithi &amp; Pulith
+          <h1 className="couple-name text-[38px] xs:text-[44px] sm:text-5xl md:text-6xl font-bold leading-[1.12] sm:leading-tight">
+            <span className="block sm:inline">Dinithi</span>{" "}
+            <span className="inline-block sm:inline sm:mx-2 text-2xl xs:text-3xl sm:text-4xl font-light my-0.5 sm:my-0">
+              &amp;
+            </span>{" "}
+            <span className="block sm:inline">Pulith</span>
           </h1>
         </div>
 

@@ -153,8 +153,12 @@ function PersonalizedRSVPContent() {
 
         {/* Couple's Names */}
         <div className="pt-2 sm:pt-3">
-          <span className="couple-name text-4xl sm:text-5xl md:text-6xl font-bold inline-block">
-            Dinithi &amp; Pulith
+          <span className="couple-name text-[42px] xs:text-5xl sm:text-5xl md:text-6xl font-bold leading-[1.15] sm:leading-tight inline-block">
+            <span className="block sm:inline">Dinithi</span>{" "}
+            <span className="inline-block sm:inline sm:mx-2.5 text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-light my-0.5 sm:my-0">
+              &amp;
+            </span>{" "}
+            <span className="block sm:inline">Pulith</span>
           </span>
         </div>
 

@@ -32,8 +32,12 @@ export default function MainInvitation() {
 
       {/* Couple's Names */}
       <div className="pt-3 sm:pt-4 md:pt-6 overflow-visible">
-        <h1 className="couple-name text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
-          Dinithi &amp; Pulith
+        <h1 className="couple-name text-5xl xs:text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.12] sm:leading-tight">
+          <span className="block sm:inline">Dinithi</span>{" "}
+          <span className="inline-block sm:inline sm:mx-3 text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light my-0.5 sm:my-0">
+            &amp;
+          </span>{" "}
+          <span className="block sm:inline">Pulith</span>
         </h1>
       </div>
     </div>

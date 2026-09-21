@@ -92,8 +92,12 @@ export default function SaveTheDateCountdown() {
 
         {/* Couple's Names in Cursive Script */}
         <div className="space-y-1">
-          <h2 className="couple-name text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-            Dinithi &amp; Pulith
+          <h2 className="couple-name text-[42px] xs:text-5xl sm:text-5xl md:text-6xl font-bold leading-[1.15] sm:leading-tight">
+            <span className="block sm:inline">Dinithi</span>{" "}
+            <span className="inline-block sm:inline sm:mx-2.5 text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-light my-0.5 sm:my-0">
+              &amp;
+            </span>{" "}
+            <span className="block sm:inline">Pulith</span>
           </h2>
         </div>
 
