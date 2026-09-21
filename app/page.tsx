@@ -12,6 +12,7 @@ import PersonalizedRSVP from "./components/PersonalizedRSVP";
 import SaveTheDateCountdown from "./components/SaveTheDateCountdown";
 import SplashScreen from "./components/SplashScreen";
 import BackgroundAudio from "./components/BackgroundAudio";
+import ScrollReveal from "./components/ScrollReveal";
 
 export default function WeddingHomePage() {
   const [startAudio, setStartAudio] = useState(false);
@@ -30,33 +31,51 @@ export default function WeddingHomePage() {
       {/* Main Content Container with Safe Padding Buffer */}
       <main className="flex-1 px-[62px] xs:px-[68px] sm:px-[76px] md:px-[145px] lg:px-[175px] py-20 sm:py-28 md:py-32 lg:py-36 max-w-4xl lg:max-w-5xl mx-auto w-full flex flex-col items-center justify-start text-center relative z-10 font-[family-name:var(--font-cormorant),serif]">
         {/* 1. Top Logo / Monogram */}
-        <HeroMonogram />
+        <ScrollReveal delay={100}>
+          <HeroMonogram />
+        </ScrollReveal>
 
         {/* 2. Invitation Flow */}
         <div className="w-full max-w-xl md:max-w-2xl lg:max-w-2xl xl:max-w-3xl mx-auto space-y-4 sm:space-y-5 md:space-y-6 text-[#3a2d27]">
           {/* Main Invitation Text (Hosts & Couple's Names) */}
-          <MainInvitation />
+          <ScrollReveal delay={150}>
+            <MainInvitation />
+          </ScrollReveal>
 
           {/* Date & Time Bar */}
-          <DateTimeBar />
+          <ScrollReveal delay={100}>
+            <DateTimeBar />
+          </ScrollReveal>
 
           {/* Romantic Interlude */}
-          <LoveStorySection />
+          <ScrollReveal delay={100}>
+            <LoveStorySection />
+          </ScrollReveal>
 
           {/* Ballroom Location Header */}
-          <BallroomLocation />
+          <ScrollReveal delay={100}>
+            <BallroomLocation />
+          </ScrollReveal>
 
           {/* The Venue Card */}
-          <VenueCard />
+          <ScrollReveal delay={100}>
+            <VenueCard />
+          </ScrollReveal>
 
           {/* Poruwa Ceremony Card */}
-          <PoruwaCeremony />
+          <ScrollReveal delay={100}>
+            <PoruwaCeremony />
+          </ScrollReveal>
 
           {/* Personalized Guest Invitation & RSVP Section (URL Param Controlled) */}
-          <PersonalizedRSVP />
+          <ScrollReveal delay={100}>
+            <PersonalizedRSVP />
+          </ScrollReveal>
 
           {/* Save The Date & Countdown Section */}
-          <SaveTheDateCountdown />
+          <ScrollReveal delay={100}>
+            <SaveTheDateCountdown />
+          </ScrollReveal>
         </div>
       </main>
     </div>

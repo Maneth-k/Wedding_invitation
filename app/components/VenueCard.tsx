@@ -10,7 +10,7 @@ export default function VenueCard() {
         <span className="font-playfair-sc text-base sm:text-lg md:text-xl tracking-[0.25em] uppercase font-medium text-[#ba8d53]">
           The Venue
         </span>
-        <div className="w-16 sm:w-20 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent mt-2 sm:mt-2.5" />
+        <div className="gold-rule w-16 sm:w-20 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent mt-2 sm:mt-2.5" />
       </div>
 
       {/* Venue Card */}

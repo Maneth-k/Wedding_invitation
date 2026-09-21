@@ -9,7 +9,7 @@ export default function PoruwaCeremony() {
         <span className="font-playfair-sc text-base sm:text-lg md:text-xl tracking-[0.25em] uppercase font-medium text-[#ba8d53]">
           The Ceremony
         </span>
-        <div className="w-16 sm:w-20 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent mt-2 sm:mt-2.5" />
+        <div className="gold-rule w-16 sm:w-20 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent mt-2 sm:mt-2.5" />
       </div>
 
       {/* Ceremony Card */}
@@ -29,7 +29,7 @@ export default function PoruwaCeremony() {
         </h3>
 
         {/* Fading Gold Divider */}
-        <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent my-3 sm:my-3.5" />
+        <div className="gold-rule w-12 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent my-3 sm:my-3.5" />
 
         {/* Time Badge */}
         <div className="font-numbers inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-[#fbf9f5] border border-[#ecdccf] text-[#8c6536] text-xs sm:text-sm font-medium tracking-widest uppercase mb-3">

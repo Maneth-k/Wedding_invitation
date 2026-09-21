@@ -106,9 +106,9 @@ function PersonalizedRSVPContent() {
       <div className="relative bg-[#ffffff]/85 backdrop-blur-xs border border-[#ecdccf] rounded-2xl p-4 sm:p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300 hover:shadow-[0_12px_36px_rgba(75,50,35,0.08)] text-center">
         {/* Decorative Top Flourish */}
         <div className="flex items-center justify-center gap-3 mb-4 sm:mb-5">
-          <div className="w-10 sm:w-16 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent" />
+          <div className="gold-rule w-10 sm:w-16 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent" />
           <span className="text-[#ba8d53] text-xs sm:text-sm">✦</span>
-          <div className="w-10 sm:w-16 h-[1px] bg-gradient-to-l from-transparent via-[#ba8d53]/60 to-transparent" />
+          <div className="gold-rule w-10 sm:w-16 h-[1px] bg-gradient-to-l from-transparent via-[#ba8d53]/60 to-transparent" />
         </div>
 
         {/* Opening Line */}
@@ -142,7 +142,7 @@ function PersonalizedRSVPContent() {
             <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl font-normal text-[#ba8d53] tracking-wide leading-tight px-4 py-1">
               {guestName}
             </h2>
-            <div className="w-3/4 mx-auto h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/50 to-transparent mt-1" />
+            <div className="gold-rule w-3/4 mx-auto h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/50 to-transparent mt-1" />
           </div>
         </div>
 
@@ -175,10 +175,10 @@ function PersonalizedRSVPContent() {
       <div id="rsvp-section" className="w-full">
         {/* Section Header */}
         <div className="flex flex-col items-center mb-5 sm:mb-6 text-center">
-          <span className="font-playfair-sc text-xs sm:text-sm tracking-[0.25em] uppercase font-medium text-[#ba8d53]">
+          <span className="font-playfair-sc text-base sm:text-lg md:text-xl tracking-[0.25em] uppercase font-medium text-[#ba8d53]">
             RSVP
           </span>
-          <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent mt-2" />
+          <div className="gold-rule w-16 sm:w-20 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent mt-2 sm:mt-2.5" />
           <p className="text-xs sm:text-sm italic text-[#705c52] mt-2 font-light">
             Kindly respond by October 1, 2026
           </p>

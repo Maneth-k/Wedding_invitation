@@ -62,7 +62,7 @@ export default function SaveTheDateCountdown() {
           <span className="font-playfair-sc text-xs sm:text-sm tracking-[0.28em] uppercase font-medium text-[#ba8d53]">
             Save the Date
           </span>
-          <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent" />
+          <div className="gold-rule w-12 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent" />
         </div>
 
         {/* Date: The Highlight of this Section */}
@@ -88,7 +88,7 @@ export default function SaveTheDateCountdown() {
         </div>
 
         {/* Fading Gold Divider */}
-        <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent" />
+        <div className="gold-rule w-16 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent" />
 
         {/* Couple's Names in Cursive Script */}
         <div className="space-y-1">

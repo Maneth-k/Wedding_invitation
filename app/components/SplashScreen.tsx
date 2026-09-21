@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Sparkles, MailOpen } from "lucide-react";
 
 interface SplashScreenProps {
   onOpen?: () => void;
@@ -105,25 +104,31 @@ export default function SplashScreen({ onOpen }: SplashScreenProps) {
           </p>
         </div>
 
-        {/* Interactive "Open Invitation" Button */}
-        <div className="pt-2 sm:pt-4 flex flex-col items-center space-y-2">
+        {/* Interactive "Open Invitation" Button (Bespoke Editorial Double-Hairline Cartouche) */}
+        <div className="pt-3 sm:pt-5 flex flex-col items-center space-y-2">
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               handleOpen();
             }}
-            className="group relative inline-flex items-center gap-2 sm:gap-2.5 px-6 sm:px-9 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-[#ba8d53] via-[#c99c64] to-[#ba8d53] hover:from-[#aa7e46] hover:to-[#a0743e] text-white font-medium shadow-[0_6px_20px_rgba(186,141,83,0.32)] hover:shadow-[0_10px_28px_rgba(186,141,83,0.45)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            className="group relative inline-flex items-center justify-center px-8 sm:px-11 py-2.5 sm:py-3 rounded-full bg-[#ffffff]/85 hover:bg-[#ba8d53] text-[#785b48] hover:text-white border border-[#ba8d53]/45 hover:border-[#ba8d53] shadow-[0_2px_12px_rgba(186,141,83,0.1)] hover:shadow-[0_6px_22px_rgba(186,141,83,0.28)] backdrop-blur-xs transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
           >
-            <MailOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#fff6ea] transition-transform duration-300 group-hover:scale-110" />
-            <span className="font-playfair text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.22em] font-semibold text-white">
+            {/* Inner Concentric Hairline Ring */}
+            <span
+              className="absolute inset-[3px] rounded-full border border-[#ba8d53]/25 group-hover:border-white/35 transition-colors duration-300 pointer-events-none"
+              aria-hidden="true"
+            />
+
+            {/* Typography */}
+            <span className="font-playfair-sc text-xs sm:text-[13px] uppercase tracking-[0.28em] font-medium transition-colors duration-300">
               Open Invitation
             </span>
-            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#fff2dd] opacity-80" />
           </button>
 
-          <span className="font-playfair text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-[#9e8b80] font-light">
-            Tap anywhere to enter
+          {/* Understated Whisper Prompt */}
+          <span className="font-playfair-sc text-[9px] sm:text-[10px] uppercase tracking-[0.26em] text-[#9e8b80] font-light">
+            or tap anywhere to enter
           </span>
         </div>
       </div>
