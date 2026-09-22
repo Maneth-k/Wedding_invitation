@@ -91,7 +91,7 @@ export default function SplashScreen({ onOpen }: SplashScreenProps) {
             <span className="inline-block sm:inline sm:mx-2 text-2xl xs:text-3xl sm:text-4xl font-light my-0.5 sm:my-0">
               &amp;
             </span>{" "}
-            <span className="block sm:inline">Pulith</span>
+            <span className="block sm:inline name-pulith text-[1.09em] tracking-[0.01em]">Pulith</span>
           </h1>
         </div>
 

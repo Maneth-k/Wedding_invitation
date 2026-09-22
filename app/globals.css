@@ -85,6 +85,13 @@ body::-webkit-scrollbar {
   animation: gold-foil-sweep 7.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
+/* Optical balance for Pulith to visually match Dinithi's footprint */
+.couple-name .name-pulith,
+.couple-names .name-pulith {
+  font-size: 1.09em;
+  letter-spacing: 0.01em;
+}
+
 html,
 body,
 button,

@@ -37,7 +37,7 @@ export default function MainInvitation() {
           <span className="inline-block sm:inline sm:mx-3 text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light my-0.5 sm:my-0">
             &amp;
           </span>{" "}
-          <span className="block sm:inline">Pulith</span>
+          <span className="block sm:inline name-pulith text-[1.09em] tracking-[0.01em]">Pulith</span>
         </h1>
       </div>
     </div>

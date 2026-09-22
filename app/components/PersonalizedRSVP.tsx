@@ -145,7 +145,7 @@ function PersonalizedRSVPContent() {
             <span className="inline-block sm:inline sm:mx-2.5 text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-light my-0.5 sm:my-0">
               &amp;
             </span>{" "}
-            <span className="block sm:inline">Pulith</span>
+            <span className="block sm:inline name-pulith text-[1.09em] tracking-[0.01em]">Pulith</span>
           </span>
         </div>
       </div>
