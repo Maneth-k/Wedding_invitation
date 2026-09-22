@@ -7,7 +7,6 @@ import { User, Check, SquarePen, Heart, X, ArrowRight } from "lucide-react";
 interface RSVPFormData {
   fullName: string;
   attending: "yes" | "no";
-  guestCount: number;
   dietary?: string;
   message?: string;
 }
@@ -19,7 +18,6 @@ function PersonalizedRSVPContent() {
   // Form State
   const [fullName, setFullName] = useState("");
   const [attending, setAttending] = useState<"yes" | "no">("yes");
-  const [guestCount, setGuestCount] = useState(1);
   const [dietary, setDietary] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,7 +29,6 @@ function PersonalizedRSVPContent() {
 
   // Retrieve raw query params
   const rawName = searchParams.get("name");
-  const rawPax = searchParams.get("pax") || searchParams.get("seats");
 
   // Parse guest name with graceful decode
   let guestName = "";
@@ -43,16 +40,10 @@ function PersonalizedRSVPContent() {
     }
   }
 
-  // Parse seats / pax
-  const parsedPax = rawPax ? parseInt(rawPax, 10) : null;
-  const allocatedSeats =
-    parsedPax && !isNaN(parsedPax) && parsedPax > 0 ? parsedPax : 2;
-
-  // Initialize pre-filled full name and guest count once mounted
+  // Initialize pre-filled full name once mounted
   useEffect(() => {
     if (guestName) {
       setFullName(guestName);
-      setGuestCount(allocatedSeats);
 
       // Check localStorage for prior submission
       try {
@@ -66,22 +57,18 @@ function PersonalizedRSVPContent() {
         // ignore localStorage errors
       }
     }
-  }, [guestName, allocatedSeats]);
+  }, [guestName]);
 
   // Graceful Fallback: If no name param is present, this entire section is not visible
   if (!mounted || !guestName) {
     return null;
   }
 
-  const seatText =
-    allocatedSeats === 1 ? "1 seat" : `${allocatedSeats} seats`;
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const data: RSVPFormData = {
       fullName: fullName.trim() || guestName,
       attending,
-      guestCount: attending === "yes" ? guestCount : 0,
       dietary,
       message,
     };
@@ -161,18 +148,6 @@ function PersonalizedRSVPContent() {
             <span className="block sm:inline">Pulith</span>
           </span>
         </div>
-
-        {/* Seats Reserved UI Message */}
-        <div className="mt-6 pt-4 border-t border-[#f2e9e1] flex justify-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#fbf9f5] border border-[#ba8d53]/30 text-[#8c6536] text-xs sm:text-sm font-medium tracking-wide">
-            <User
-              className="w-4 h-4 text-[#ba8d53]"
-              strokeWidth={1.75}
-              aria-hidden="true"
-            />
-            <span>We have reserved {seatText} in your honour.</span>
-          </div>
-        </div>
       </div>
 
       {/* 2. RSVP Form Section */}
@@ -211,12 +186,7 @@ function PersonalizedRSVPContent() {
                 <p className="text-sm sm:text-base text-[#705c52] font-light leading-relaxed">
                   {submittedData.attending === "yes" ? (
                     <>
-                      We are delighted to confirm your reservation for{" "}
-                      <span className="font-semibold text-[#2d221e]">
-                        {submittedData.guestCount}{" "}
-                        {submittedData.guestCount === 1 ? "guest" : "guests"}
-                      </span>
-                      . We cannot wait to celebrate this momentous day together!
+                      We are delighted to confirm your attendance. We cannot wait to celebrate this momentous day together!
                     </>
                   ) : (
                     <>
@@ -372,77 +342,6 @@ function PersonalizedRSVPContent() {
                   </button>
                 </div>
               </div>
-
-              {/* 3. Guest Counter (Locked to Max Seats Allocated) */}
-              {attending === "yes" && (
-                <div className="pt-1 space-y-2.5">
-                  <div className="flex items-center justify-between">
-                    <label className="block text-xs uppercase tracking-[0.18em] font-medium text-[#5a483e]">
-                      Seats Attending
-                    </label>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#8c6536] bg-[#fbf9f5] px-2.5 py-0.5 rounded-full border border-[#ba8d53]/25">
-                      <span>Max {allocatedSeats} {allocatedSeats === 1 ? "seat" : "seats"}</span>
-                    </span>
-                  </div>
-
-                  {/* Seat Selector Container */}
-                  <div className="p-4 sm:p-5 rounded-2xl bg-[#faf6f0]/75 border border-[#ecdccf] space-y-3">
-                    <div className="flex items-center justify-between text-xs sm:text-sm text-[#705c52]">
-                      <span>
-                        We have reserved <strong className="text-[#2d221e] font-semibold">{seatText}</strong> in your honour.
-                      </span>
-                    </div>
-
-                    {/* Interactive Seat Choice: Pill Buttons or Stepper */}
-                    {allocatedSeats <= 4 ? (
-                      <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-3">
-                        {Array.from({ length: allocatedSeats }, (_, i) => i + 1).map((num) => (
-                          <button
-                            key={num}
-                            type="button"
-                            onClick={() => setGuestCount(num)}
-                            className={`flex-1 py-2.5 px-4 rounded-xl border text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
-                              guestCount === num
-                                ? "bg-[#ba8d53] text-white border-[#ba8d53] shadow-[0_3px_12px_rgba(186,141,83,0.25)] font-semibold"
-                                : "bg-white text-[#4a3b32] border-[#e2d4c7] hover:border-[#ba8d53]/50 hover:bg-[#fbf9f5]"
-                            }`}
-                          >
-                            {num} {num === 1 ? "Guest" : "Guests"}
-                          </button>
-                        ))}
-                      </div>
-                    ) : (
-                      /* Stepper for larger allocations */
-                      <div className="flex items-center justify-between bg-white px-4 py-2.5 rounded-xl border border-[#e2d4c7]">
-                        <span className="text-xs sm:text-sm font-medium text-[#2d221e]">
-                          Number of guests attending:
-                        </span>
-                        <div className="flex items-center gap-3">
-                          <button
-                            type="button"
-                            onClick={() => setGuestCount((prev) => Math.max(1, prev - 1))}
-                            disabled={guestCount <= 1}
-                            className="w-8 h-8 rounded-full border border-[#ba8d53]/40 flex items-center justify-center text-[#8c6536] hover:bg-[#ba8d53] hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
-                          >
-                            -
-                          </button>
-                          <span className="w-6 text-center font-bold text-[#2d221e]">
-                            {guestCount}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => setGuestCount((prev) => Math.min(allocatedSeats, prev + 1))}
-                            disabled={guestCount >= allocatedSeats}
-                            className="w-8 h-8 rounded-full border border-[#ba8d53]/40 flex items-center justify-center text-[#8c6536] hover:bg-[#ba8d53] hover:text-white transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
-                          >
-                            +
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
 
               {/* 
                 Dietary Preferences (Commented out for now as requested)
