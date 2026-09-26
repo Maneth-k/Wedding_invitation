@@ -7,56 +7,34 @@ interface BackgroundAudioProps {
   shouldPlay?: boolean;
 }
 
-const TARGET_VOLUME = 0.35; // Gentle 35% background volume for ambient elegance
+const TARGET_VOLUME = 0.35; // Gentle 35% background volume for ambient elegance on desktop/Android
+
+function getInitialMutedState(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return sessionStorage.getItem("wedding_music_muted") === "true";
+  } catch {
+    return false;
+  }
+}
 
 export default function BackgroundAudio({ shouldPlay }: BackgroundAudioProps) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [isMuted, setIsMuted] = useState(getInitialMutedState);
 
-  // Volume fade-in helper for smooth audio entrance
-  const fadeIn = useCallback((targetVol = TARGET_VOLUME, durationMs = 1200) => {
+  // Initialize audio element settings on mount
+  useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
 
-    const stepMs = 50;
-    const steps = durationMs / stepMs;
-    const increment = targetVol / steps;
-    audio.volume = 0;
-
-    fadeIntervalRef.current = setInterval(() => {
-      if (!audio) return;
-      if (audio.volume + increment >= targetVol) {
-        audio.volume = targetVol;
-        if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
-      } else {
-        audio.volume = Math.min(targetVol, audio.volume + increment);
-      }
-    }, stepMs);
-  }, []);
-
-  // Volume fade-out helper for gentle mute
-  const fadeOut = useCallback((durationMs = 250, onComplete?: () => void) => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
-
-    const stepMs = 30;
-    const steps = durationMs / stepMs;
-    const decrement = (audio.volume || TARGET_VOLUME) / steps;
-
-    fadeIntervalRef.current = setInterval(() => {
-      if (!audio) return;
-      if (audio.volume - decrement <= 0.02) {
-        audio.volume = 0;
-        if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
-        if (onComplete) onComplete();
-      } else {
-        audio.volume = Math.max(0, audio.volume - decrement);
-      }
-    }, stepMs);
+    const initialMuted = getInitialMutedState();
+    audio.muted = initialMuted;
+    try {
+      audio.volume = TARGET_VOLUME;
+    } catch {
+      // iOS WebKit disables setting audio.volume; ignore
+    }
   }, []);
 
   // Safe play audio with browser policy handling
@@ -68,56 +46,85 @@ export default function BackgroundAudio({ shouldPlay }: BackgroundAudioProps) {
     try {
       const savedMute = sessionStorage.getItem("wedding_music_muted");
       if (savedMute === "true") {
-        setIsMuted(true);
         return;
       }
     } catch {
       // ignore storage errors
     }
 
+    // Exclusively use audio.muted for iOS WebKit compatibility
     audio.muted = false;
-    audio
-      .play()
-      .then(() => {
-        setIsPlaying(true);
-        setIsMuted(false);
-        fadeIn(TARGET_VOLUME);
-      })
-      .catch((err) => {
-        // Autoplay blocked by browser policy; silently wait for user gesture
-        console.debug("Audio autoplay waiting for user interaction:", err?.name);
-      });
-  }, [fadeIn]);
+    try {
+      audio.volume = TARGET_VOLUME;
+    } catch {
+      // iOS WebKit disables setting audio.volume; ignore
+    }
+
+    if (audio.paused) {
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+            setIsMuted(false);
+          })
+          .catch((err) => {
+            // Autoplay blocked by browser policy; silently wait for user gesture
+            console.debug("Audio autoplay waiting for user interaction:", err?.name);
+          });
+      }
+    }
+  }, []);
 
   // Handle explicit user toggle (mute / unmute)
   const toggleMute = () => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (isPlaying && !isMuted) {
-      // User clicked Mute
-      fadeOut(250, () => {
-        audio.pause();
-        setIsPlaying(false);
-        setIsMuted(true);
-        try {
-          sessionStorage.setItem("wedding_music_muted", "true");
-        } catch {}
-      });
+    const isActivelyPlaying = !audio.paused && !audio.muted && !isMuted;
+
+    if (isActivelyPlaying) {
+      // User clicked Mute: exclusively set audio.muted and pause (iOS WebKit compatible)
+      audio.muted = true;
+      audio.pause();
+      setIsMuted(true);
+      setIsPlaying(false);
+      try {
+        sessionStorage.setItem("wedding_music_muted", "true");
+      } catch {
+        // ignore storage errors
+      }
     } else {
       // User clicked Unmute / Play
       try {
         sessionStorage.setItem("wedding_music_muted", "false");
-      } catch {}
-      setIsMuted(false);
+      } catch {
+        // ignore storage errors
+      }
+
+      // Exclusively unmute via audio.muted
       audio.muted = false;
-      audio
-        .play()
-        .then(() => {
-          setIsPlaying(true);
-          fadeIn(TARGET_VOLUME);
-        })
-        .catch((e) => console.error("Could not play background audio:", e));
+      setIsMuted(false);
+
+      try {
+        audio.volume = TARGET_VOLUME;
+      } catch {
+        // iOS WebKit disables setting audio.volume; ignore
+      }
+
+      // Explicitly trigger audio.play() on direct user interaction (unlocks iOS WebKit)
+      if (audio.paused) {
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setIsPlaying(true);
+            })
+            .catch((err) => {
+              console.debug("Could not play background audio on interaction:", err);
+            });
+        }
+      }
     }
   };
 
@@ -128,7 +135,7 @@ export default function BackgroundAudio({ shouldPlay }: BackgroundAudioProps) {
     }
   }, [shouldPlay, playAudio]);
 
-  // One-time fallback interaction listener for strict browser autoplay policies
+  // One-time fallback interaction listener for strict browser autoplay policies (including iOS Safari)
   useEffect(() => {
     const handleFirstInteraction = () => {
       try {
@@ -164,18 +171,20 @@ export default function BackgroundAudio({ shouldPlay }: BackgroundAudioProps) {
       if (!audio) return;
 
       if (document.hidden) {
-        if (isPlaying && !isMuted) {
+        if (!audio.paused) {
           audio.pause();
         }
       } else {
         try {
           const savedMute = sessionStorage.getItem("wedding_music_muted");
           if (savedMute !== "true" && !isMuted) {
-            audio.play().then(() => setIsPlaying(true)).catch(() => {});
+            audio.muted = false;
+            audio.play().catch(() => {});
           }
         } catch {
           if (!isMuted) {
-            audio.play().then(() => setIsPlaying(true)).catch(() => {});
+            audio.muted = false;
+            audio.play().catch(() => {});
           }
         }
       }
@@ -183,21 +192,7 @@ export default function BackgroundAudio({ shouldPlay }: BackgroundAudioProps) {
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, [isPlaying, isMuted]);
-
-  // Initialize mute state from session storage
-  useEffect(() => {
-    try {
-      const savedMute = sessionStorage.getItem("wedding_music_muted");
-      if (savedMute === "true") {
-        setIsMuted(true);
-      }
-    } catch {}
-
-    return () => {
-      if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
-    };
-  }, []);
+  }, [isMuted]);
 
   return (
     <>
@@ -207,6 +202,8 @@ export default function BackgroundAudio({ shouldPlay }: BackgroundAudioProps) {
         loop
         preload="auto"
         playsInline
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
       />
 
       {/* Floating Audio Mute / Unmute Button */}

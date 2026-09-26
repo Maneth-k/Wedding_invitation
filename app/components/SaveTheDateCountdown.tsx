@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useSyncExternalStore } from "react";
 import { Phone } from "lucide-react";
 
 interface TimeLeft {
@@ -27,19 +27,13 @@ function calculateTimeLeft(): TimeLeft {
   return { days, hours, minutes, seconds };
 }
 
+const emptySubscribe = () => () => {};
+
 export default function SaveTheDateCountdown() {
-  const [mounted, setMounted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft);
 
   useEffect(() => {
-    setMounted(true);
-    setTimeLeft(calculateTimeLeft());
-
     const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);

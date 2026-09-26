@@ -1,5 +1,5 @@
 "use client";
-
+export const dynamic = "force-dynamic";
 import React, { useState } from "react";
 import HeroMonogram from "./components/HeroMonogram";
 import MainInvitation from "./components/MainInvitation";

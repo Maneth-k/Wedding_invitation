@@ -1,6 +1,6 @@
 "use client";
-
-import React, { Suspense, useState, useEffect } from "react";
+export const dynamic = "force-dynamic";
+import React, { Suspense, useState, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
 import { User, Check, SquarePen, Heart, X, ArrowRight } from "lucide-react";
 
@@ -11,58 +11,30 @@ interface RSVPFormData {
   message?: string;
 }
 
-function PersonalizedRSVPContent() {
-  const searchParams = useSearchParams();
-  const [mounted, setMounted] = useState(false);
-
-  // Form State
-  const [fullName, setFullName] = useState("");
-  const [attending, setAttending] = useState<"yes" | "no">("yes");
-  const [dietary, setDietary] = useState("");
-  const [message, setMessage] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [submittedData, setSubmittedData] = useState<RSVPFormData | null>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Retrieve raw query params
-  const rawName = searchParams.get("name");
-
-  // Parse guest name with graceful decode
-  let guestName = "";
-  if (rawName) {
-    try {
-      guestName = decodeURIComponent(rawName).trim();
-    } catch {
-      guestName = rawName.trim();
+function getSavedRSVP(guestName: string): RSVPFormData | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const saved = localStorage.getItem(`wedding_rsvp_${guestName}`);
+    if (saved) {
+      return JSON.parse(saved);
     }
+  } catch {
+    // ignore localStorage errors
   }
+  return null;
+}
 
-  // Initialize pre-filled full name once mounted
-  useEffect(() => {
-    if (guestName) {
-      setFullName(guestName);
-
-      // Check localStorage for prior submission
-      try {
-        const saved = localStorage.getItem(`wedding_rsvp_${guestName}`);
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          setSubmittedData(parsed);
-          setIsSubmitted(true);
-        }
-      } catch {
-        // ignore localStorage errors
-      }
-    }
-  }, [guestName]);
-
-  // Graceful Fallback: If no name param is present, this entire section is not visible
-  if (!mounted || !guestName) {
-    return null;
-  }
+// 1. Inner form component: holds clean local state per guest
+function RSVPContentInner({ guestName }: { guestName: string }) {
+  const [savedData] = useState<RSVPFormData | null>(() => getSavedRSVP(guestName));
+  const [fullName, setFullName] = useState(() => savedData?.fullName || guestName);
+  const [attending, setAttending] = useState<"yes" | "no">(() => savedData?.attending || "yes");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [dietary, setDietary] = useState(() => savedData?.dietary || "");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [message, setMessage] = useState(() => savedData?.message || "");
+  const [isSubmitted, setIsSubmitted] = useState(() => !!savedData);
+  const [submittedData, setSubmittedData] = useState<RSVPFormData | null>(() => savedData);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -293,7 +265,7 @@ function PersonalizedRSVPContent() {
                         Joyfully Accepts
                       </p>
                       <p className="text-xs text-[#705c52] font-light mt-0.5">
-                        Can't wait to celebrate with you
+                        Can&apos;t wait to celebrate with you
                       </p>
                     </div>
                   </button>
@@ -403,6 +375,38 @@ function PersonalizedRSVPContent() {
       </div>
     </div>
   );
+}
+
+const emptySubscribe = () => () => {};
+
+// 2. Controller component: decodes the search parameter and handles hydration
+function PersonalizedRSVPContent() {
+  const searchParams = useSearchParams();
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+
+  const rawName = searchParams.get("name");
+
+  let guestName = "";
+  if (rawName) {
+    try {
+      // Convert + to space, then decodeURIComponent
+      guestName = decodeURIComponent(rawName.replace(/\+/g, " ")).trim();
+    } catch {
+      guestName = rawName.replace(/\+/g, " ").trim();
+    }
+  }
+
+  // Graceful Fallback: If no name param is present or not mounted, this section is not visible
+  if (!mounted || !guestName) {
+    return null;
+  }
+
+  // Key prop guarantees a fresh mount whenever guestName changes
+  return <RSVPContentInner key={guestName} guestName={guestName} />;
 }
 
 export default function PersonalizedRSVP() {

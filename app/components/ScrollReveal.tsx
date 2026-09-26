@@ -9,24 +9,24 @@ interface ScrollRevealProps {
   distance?: number;
 }
 
+function getInitialVisibility(): boolean {
+  if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return true;
+  }
+  return false;
+}
+
 export default function ScrollReveal({
   children,
   delay = 0,
   className = "",
   distance = 14,
 }: ScrollRevealProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(getInitialVisibility);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Respect user accessibility preference
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      setIsVisible(true);
-      return;
-    }
+    if (isVisible) return;
 
     const currentRef = ref.current;
     if (!currentRef) return;
@@ -49,7 +49,7 @@ export default function ScrollReveal({
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [isVisible]);
 
   return (
     <div
