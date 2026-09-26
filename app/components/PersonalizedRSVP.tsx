@@ -152,7 +152,7 @@ function RSVPContentInner({ guestName }: { guestName: string }) {
           </span>
           <div className="gold-rule w-16 sm:w-20 h-[1px] bg-gradient-to-r from-transparent via-[#ba8d53]/60 to-transparent mt-2 sm:mt-2.5" />
           <p className="text-xs sm:text-sm italic text-[#705c52] mt-2 font-light">
-            Kindly respond by October 1, 2026
+            Kindly respond by October 10, 2026
           </p>
         </div>
 
