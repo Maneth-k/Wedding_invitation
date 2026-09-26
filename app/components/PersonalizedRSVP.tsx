@@ -2,7 +2,8 @@
 export const dynamic = "force-dynamic";
 import React, { Suspense, useState, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
-import { User, Check, SquarePen, Heart, X, ArrowRight } from "lucide-react";
+import { User, Check, SquarePen, Heart, X, ArrowRight, Loader2, AlertCircle } from "lucide-react";
+import { submitRSVP } from "../actions/rsvp";
 
 interface RSVPFormData {
   fullName: string;
@@ -35,9 +36,16 @@ function RSVPContentInner({ guestName }: { guestName: string }) {
   const [message, setMessage] = useState(() => savedData?.message || "");
   const [isSubmitted, setIsSubmitted] = useState(() => !!savedData);
   const [submittedData, setSubmittedData] = useState<RSVPFormData | null>(() => savedData);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
+    setErrorMessage(null);
+    setIsSubmitting(true);
+
     const data: RSVPFormData = {
       fullName: fullName.trim() || guestName,
       attending,
@@ -46,16 +54,29 @@ function RSVPContentInner({ guestName }: { guestName: string }) {
     };
 
     try {
-      localStorage.setItem(`wedding_rsvp_${guestName}`, JSON.stringify(data));
-    } catch {
-      // ignore
-    }
+      const result = await submitRSVP(data);
 
-    setSubmittedData(data);
-    setIsSubmitted(true);
+      if (result.success) {
+        try {
+          localStorage.setItem(`wedding_rsvp_${guestName}`, JSON.stringify(data));
+        } catch {
+          // ignore localStorage error
+        }
+
+        setSubmittedData(data);
+        setIsSubmitted(true);
+      } else {
+        setErrorMessage(result.error || "Unable to record your RSVP right now. Please try again.");
+      }
+    } catch {
+      setErrorMessage("An unexpected network error occurred. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleEdit = () => {
+    setErrorMessage(null);
     setIsSubmitted(false);
   };
 
@@ -205,10 +226,11 @@ function RSVPContentInner({ guestName }: { guestName: string }) {
                     id="fullName"
                     type="text"
                     required
+                    disabled={isSubmitting}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="e.g. Mr. & Mrs. Perera"
-                    className="w-full px-4 py-3 pl-11 rounded-xl bg-[#fcfaf7] border border-[#e5d6c8] text-[#2d221e] text-sm sm:text-base font-medium placeholder:text-[#9e8b80] focus:outline-hidden focus:border-[#ba8d53] focus:ring-2 focus:ring-[#ba8d53]/20 transition-all shadow-2xs"
+                    className="w-full px-4 py-3 pl-11 rounded-xl bg-[#fcfaf7] border border-[#e5d6c8] text-[#2d221e] text-sm sm:text-base font-medium placeholder:text-[#9e8b80] focus:outline-hidden focus:border-[#ba8d53] focus:ring-2 focus:ring-[#ba8d53]/20 disabled:opacity-60 disabled:cursor-not-allowed transition-all shadow-2xs"
                   />
                   {/* Decorative Icon */}
                   <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#ba8d53]">
@@ -230,8 +252,9 @@ function RSVPContentInner({ guestName }: { guestName: string }) {
                   {/* Joyfully Accept Card */}
                   <button
                     type="button"
+                    disabled={isSubmitting}
                     onClick={() => setAttending("yes")}
-                    className={`relative p-4 sm:p-5 rounded-2xl border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between ${
+                    className={`relative p-4 sm:p-5 rounded-2xl border text-left transition-all duration-200 disabled:cursor-not-allowed cursor-pointer flex flex-col justify-between ${
                       attending === "yes"
                         ? "bg-[#faf6f0] border-[#ba8d53] shadow-[0_4px_20px_rgba(186,141,83,0.12)] ring-1 ring-[#ba8d53]/30"
                         : "bg-[#fdfbf7]/60 border-[#ecdccf] hover:border-[#ba8d53]/40 hover:bg-[#faf7f2]/50"
@@ -273,8 +296,9 @@ function RSVPContentInner({ guestName }: { guestName: string }) {
                   {/* Regretfully Decline Card */}
                   <button
                     type="button"
+                    disabled={isSubmitting}
                     onClick={() => setAttending("no")}
-                    className={`relative p-4 sm:p-5 rounded-2xl border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between ${
+                    className={`relative p-4 sm:p-5 rounded-2xl border text-left transition-all duration-200 disabled:cursor-not-allowed cursor-pointer flex flex-col justify-between ${
                       attending === "no"
                         ? "bg-[#faf6f0] border-[#ba8d53] shadow-[0_4px_20px_rgba(186,141,83,0.12)] ring-1 ring-[#ba8d53]/30"
                         : "bg-[#fdfbf7]/60 border-[#ecdccf] hover:border-[#ba8d53]/40 hover:bg-[#faf7f2]/50"
@@ -355,18 +379,39 @@ function RSVPContentInner({ guestName }: { guestName: string }) {
                 </div>
               */}
 
+              {/* Error Message Feedback */}
+              {errorMessage && (
+                <div
+                  role="alert"
+                  className="flex items-start gap-2.5 p-3.5 rounded-xl bg-[#fdf2f2] border border-[#f5c6cb] text-[#842029] text-xs sm:text-sm leading-relaxed"
+                >
+                  <AlertCircle className="w-4 h-4 shrink-0 text-[#842029] mt-0.5" aria-hidden="true" />
+                  <span className="font-normal">{errorMessage}</span>
+                </div>
+              )}
+
               {/* 4. Submit Button */}
               <div className="pt-3 text-center">
                 <button
                   type="submit"
-                  className="w-full sm:w-auto min-w-[220px] px-8 py-3.5 rounded-full bg-gradient-to-r from-[#ba8d53] via-[#c2965d] to-[#ba8d53] hover:from-[#aa7e46] hover:to-[#a0743e] text-white font-medium text-xs sm:text-sm uppercase tracking-[0.18em] shadow-[0_6px_20px_rgba(186,141,83,0.25)] hover:shadow-[0_8px_26px_rgba(186,141,83,0.35)] transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer inline-flex items-center justify-center gap-2"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto min-w-[220px] px-8 py-3.5 rounded-full bg-gradient-to-r from-[#ba8d53] via-[#c2965d] to-[#ba8d53] hover:from-[#aa7e46] hover:to-[#a0743e] disabled:opacity-75 disabled:cursor-not-allowed text-white font-medium text-xs sm:text-sm uppercase tracking-[0.18em] shadow-[0_6px_20px_rgba(186,141,83,0.25)] hover:shadow-[0_8px_26px_rgba(186,141,83,0.35)] transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 disabled:transform-none cursor-pointer inline-flex items-center justify-center gap-2"
                 >
-                  <span className="font-playfair font-medium">Confirm Response</span>
-                  <ArrowRight
-                    className="w-4 h-4"
-                    strokeWidth={2}
-                    aria-hidden="true"
-                  />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-white" aria-hidden="true" />
+                      <span className="font-playfair font-medium">Recording RSVP...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="font-playfair font-medium">Confirm Response</span>
+                      <ArrowRight
+                        className="w-4 h-4"
+                        strokeWidth={2}
+                        aria-hidden="true"
+                      />
+                    </>
+                  )}
                 </button>
               </div>
             </form>
